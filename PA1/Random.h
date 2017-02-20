@@ -2,9 +2,6 @@
 //  Random.h
 //  PA1
 //
-//  Created by Gabe Montague on 2/19/17.
-//  Copyright © 2017 Gabe Montague. All rights reserved.
-//
 
 #ifndef Random_h
 #define Random_h
@@ -13,16 +10,17 @@
 #include "Types.h"
 
 // Returns a random float between a and b
-FloatType randomFloat(FloatType a, FloatType b) {
+FloatType randomFloat(const FloatType a, const FloatType b) {
     
-    FloatType random = ((FloatType) rand()) / (FloatType) RAND_MAX;
+    FloatType random = static_cast<FloatType>(rand()) / static_cast<FloatType>(RAND_MAX);
     FloatType diff = b - a;
     FloatType r = random * diff;
     return a + r;
 }
 
+// Seeds the random number generator
 void setSeed(unsigned int seed) {
-    srand (seed);
+    srand(seed);
 }
 
 #endif /* Random_h */

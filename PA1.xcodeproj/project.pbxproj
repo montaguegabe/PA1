@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		95ED749E1E5A6FE60047CB48 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95ED749D1E5A6FE60047CB48 /* main.cpp */; };
 		95ED74A61E5A70270047CB48 /* Graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95ED74A41E5A70270047CB48 /* Graph.cpp */; };
+		95ED74AE1E5A9F2C0047CB48 /* FibHeap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 95ED74AC1E5A9F2C0047CB48 /* FibHeap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		95ED74A71E5A751D0047CB48 /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		95ED74A81E5A75A40047CB48 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		95ED74AB1E5A84B40047CB48 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		95ED74AC1E5A9F2C0047CB48 /* FibHeap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FibHeap.cpp; sourceTree = "<group>"; };
+		95ED74AD1E5A9F2C0047CB48 /* FibHeap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FibHeap.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				95ED74A71E5A751D0047CB48 /* Random.h */,
 				95ED74A51E5A70270047CB48 /* Graph.hpp */,
 				95ED74A41E5A70270047CB48 /* Graph.cpp */,
+				95ED74AD1E5A9F2C0047CB48 /* FibHeap.hpp */,
+				95ED74AC1E5A9F2C0047CB48 /* FibHeap.cpp */,
 				95ED749D1E5A6FE60047CB48 /* main.cpp */,
 			);
 			path = PA1;
@@ -131,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95ED74AE1E5A9F2C0047CB48 /* FibHeap.cpp in Sources */,
 				95ED74A61E5A70270047CB48 /* Graph.cpp in Sources */,
 				95ED749E1E5A6FE60047CB48 /* main.cpp in Sources */,
 			);

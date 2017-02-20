@@ -2,9 +2,6 @@
 //  Graph.cpp
 //  PA1
 //
-//  Created by Gabe Montague on 2/19/17.
-//  Copyright © 2017 Gabe Montague. All rights reserved.
-//
 
 #include "Random.h"
 #include "Graph.hpp"
@@ -16,7 +13,7 @@
 using std::cout;
 
 // Constructor
-Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int seed) {
+Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed) {
     
     // 0 is the default argument for seed
     if (seed == 0) {
@@ -35,11 +32,11 @@ Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int s
     if (dimensions == 0) {
         
         // Fill in all weights randomly
-        for (unsigned int row = 0; row < n; row++) {
+        for (SizeType row = 0; row < n; row++) {
             
             vector<FloatType> currentRow = {};
             
-            for (unsigned int column = 0; column < row; column++) {
+            for (SizeType column = 0; column < row; column++) {
             
                 // Generate a random number
                 FloatType entry = randomFloat(0.0f, 1.0f);
@@ -52,7 +49,7 @@ Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int s
     } else {
             
         // Generate n points in dimension dimensions
-        for (unsigned int i = 0; i < n; i++) {
+        for (SizeType i = 0; i < n; i++) {
             
             vector<FloatType> currentRow = {};
             
@@ -63,7 +60,7 @@ Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int s
             }
             
             // Calculate distance to all other vertices
-            for (unsigned int j = 0; j < i; j++) {
+            for (SizeType j = 0; j < i; j++) {
                 
                 Coordinate other = _vertices[j];
                 
@@ -87,10 +84,10 @@ Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int s
 }
 
 // Print
-void Graph::print() {
+void Graph::print() const {
     
-    for (unsigned int row = 0; row < _n; row++) {
-        for (unsigned int column = 0; column < row; column++) {
+    for (SizeType row = 0; row < _n; row++) {
+        for (SizeType column = 0; column < row; column++) {
             
             cout << _weights[row][column] << ", ";
         }
@@ -99,9 +96,9 @@ void Graph::print() {
     }
 }
 
-void Graph::printVertices() {
+void Graph::printVertices() const {
     
-    for (unsigned int i = 0; i < _n; i++) {
+    for (SizeType i = 0; i < _n; i++) {
         cout << "[";
         for (unsigned int d = 0; d < _dimensions; d++) {
             cout << _vertices[i][d] << ",";
