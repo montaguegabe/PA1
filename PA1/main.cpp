@@ -6,11 +6,10 @@
 #include <iostream>
 
 #include "Graph.hpp"
-#include "Tests.h"
 
 int main(int argc, const char * argv[]) {
     
-    runTests();
+    Graph::test();
 
     return 0;
 }

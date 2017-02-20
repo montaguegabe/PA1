@@ -54,6 +54,8 @@ Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int s
         // Generate n points in dimension dimensions
         for (unsigned int i = 0; i < n; i++) {
             
+            vector<FloatType> currentRow = {};
+            
             // Generate two random numbers
             Coordinate c = Coordinate();
             for (unsigned int d = 0; d < dimensions; d++) {
@@ -75,9 +77,10 @@ Graph::Graph(const unsigned int n, const unsigned int dimensions, unsigned int s
                 
                 // Put the distance in the matrix
                 // We are filling in the bottom left of the matrix
-                _weights[i][j] = distance;
+                currentRow.push_back(distance);
             }
-                
+            
+            _weights.push_back(currentRow);
             _vertices.push_back(c);
         }
     }
@@ -94,4 +97,28 @@ void Graph::print() {
         
         cout << "\n";
     }
+}
+
+void Graph::printVertices() {
+    
+    for (unsigned int i = 0; i < _n; i++) {
+        cout << "[";
+        for (unsigned int d = 0; d < _dimensions; d++) {
+            cout << _vertices[i][d] << ",";
+        }
+        cout << "]\n";
+    }
+}
+
+// Testing
+void Graph::test() {
+    
+    // Make a graph
+    auto g1 = Graph(5, 0, 1487555058);
+    
+    assert(compareFloats(g1._weights[1][0], 0.155178));
+    assert(compareFloats(g1._weights[4][3], 0.0334458));
+    
+    auto g2 = Graph(5, 2, 1487555058);
+    assert(compareFloats(g2._vertices[3][1], 0.275206));
 }

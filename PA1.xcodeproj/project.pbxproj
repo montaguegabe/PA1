@@ -30,7 +30,7 @@
 		95ED74A51E5A70270047CB48 /* Graph.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
 		95ED74A71E5A751D0047CB48 /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		95ED74A81E5A75A40047CB48 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
-		95ED74A91E5A7B4B0047CB48 /* Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
+		95ED74AB1E5A84B40047CB48 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,11 +63,11 @@
 		95ED749C1E5A6FE60047CB48 /* PA1 */ = {
 			isa = PBXGroup;
 			children = (
+				95ED74AB1E5A84B40047CB48 /* Util.h */,
 				95ED74A81E5A75A40047CB48 /* Types.h */,
 				95ED74A71E5A751D0047CB48 /* Random.h */,
 				95ED74A51E5A70270047CB48 /* Graph.hpp */,
 				95ED74A41E5A70270047CB48 /* Graph.cpp */,
-				95ED74A91E5A7B4B0047CB48 /* Tests.h */,
 				95ED749D1E5A6FE60047CB48 /* main.cpp */,
 			);
 			path = PA1;
