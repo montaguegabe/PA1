@@ -10,14 +10,18 @@
 
 using std::array;
 
-// Types used by Graph class
+// Type used for real numbers
 typedef double FloatType;
-typedef unsigned int SizeType; // Used to index the graph matrix
-typedef array<SizeType, 2> EdgeType; // Edges connect two vertex indices
+
+// Used to index the graph matrix
+typedef unsigned int SizeType;
+
+// Edges connect two vertex indices
+typedef array<SizeType, 2> Edge;
 
 // Types used by FibHeap class
 typedef FloatType HeapKeyType;
-typedef EdgeType HeapValueType;
+typedef Edge HeapValueType;
 
 
 #endif /* Types_h */

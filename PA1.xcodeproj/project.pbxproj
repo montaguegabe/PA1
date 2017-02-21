@@ -267,6 +267,7 @@
 				95ED74A31E5A6FE60047CB48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
