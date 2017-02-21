@@ -26,7 +26,7 @@ void FibHeap::Node::print(const Node* start) const {
     // Print key and children
     cout << "(" << key << ",{";
     if (child != nullptr) {
-        //child->print();
+        child->print();
     }
     cout << "}),";
     
@@ -34,36 +34,22 @@ void FibHeap::Node::print(const Node* start) const {
     next->print(start == nullptr ? this : start);
 }
 
-void FibHeap::Node::deleteSiblings() {
+// NOTE: Contains delete this!
+void FibHeap::Node::deleteTree(const Node* start) {
     
-    // Delete siblings of the node
-    Node* iteratedNode = next; // i.e. this->child
-    
-    while (iteratedNode != this) {
-        
-        if (iteratedNode == nullptr) {
-            throw logic_error("Found null sibling in a tree while deleting! This should never happen.");
-        }
-        
-        // Delete the children of a node before deleting the node
-        Node* iteratedNodeAfter = iteratedNode->next;
-        iteratedNode->deleteChildren();
-        delete iteratedNode;
-        iteratedNode = iteratedNodeAfter;
+    // Base case: no more siblings - delete self
+    if (this == start) {
+        delete this;
+        return;
     }
     
-    next = nullptr;
-    prev = nullptr;
-}
-
-void FibHeap::Node::deleteChildren() {
-    
-    // Delete children of the node
+    // Delete children
     if (child != nullptr) {
-        child->deleteSiblings();
-        delete child;
-        child = nullptr;
+        child->deleteTree();
     }
+    
+    // Print siblings
+    next->deleteTree(start == nullptr ? this : start);
 }
 
 
@@ -78,7 +64,7 @@ void FibHeap::test() {
     fh.insert(21.0, {3, 300});
     fh.insert(54.0, {4, 400});
     fh.insert(96.0, {5, 500});
-    fh.insert(0.05, {6, 600});
+    fh.insert(1.2, {6, 600});
     fh.insert(3.14, {7, 700});
     fh.insert(134.0, {8, 800});
     
@@ -86,17 +72,15 @@ void FibHeap::test() {
     
     fh.popMin();
     fh.print();
+    
+    cout << "Done";
 }
 
 // Destructor
 FibHeap::~FibHeap() {
     
     if (_min != nullptr) {
-        
-        _min->deleteChildren();
-        _min->deleteSiblings();
-        delete _min;
-        _min = nullptr;
+        _min->deleteTree();
     }
 }
 
@@ -212,7 +196,7 @@ KVPair FibHeap::popMin() {
 
 void FibHeap::print() const {
     
-    cout << "FibHeap of " << _n << "nodes:\n";
+    cout << "FibHeap of " << _n << " nodes:\n";
     _min->print();
     cout << "\n";
 }
@@ -229,21 +213,24 @@ void FibHeap::_consolidate() {
     auto a = vector<Node*>(maxDegree, nullptr);
     
     // Iterate over the root list
-    const Node* start = _min;
+    const Node* const last = _min->prev;
     Node* iteratedNode = _min;
     
-    do {
-
+    while(true) {
+        
+        Node* const iteratedNodeNext = iteratedNode->next;
+        
         SizeType degree = iteratedNode->degree;
         
         // See if there is an existing tree we have already iterated over with matching degree
+        Node* smaller = iteratedNode;
         while (a[degree] != nullptr) {
             
             // This will have the same degree as the iterated node
             Node* otherNode = a[degree]; // Called y in notes
             
             const bool iteratedIsSmaller = iteratedNode->key <= otherNode->key;
-            Node* smaller = iteratedIsSmaller ? iteratedNode : otherNode;
+            smaller = iteratedIsSmaller ? iteratedNode : otherNode;
             Node* larger = iteratedIsSmaller ? otherNode : iteratedNode;
             
             // Parent the smaller under the larger: first remove larger from the root list
@@ -253,6 +240,8 @@ void FibHeap::_consolidate() {
             // Now parent the larger under the smaller
             larger->parent = smaller;
             if (smaller->child == nullptr) {
+                larger->next = larger;
+                larger->prev = larger;
                 smaller->child = larger;
             } else {
                 Node* sibling = smaller->child;
@@ -271,10 +260,15 @@ void FibHeap::_consolidate() {
         }
         
         // Record this tree in the array as having degree degree
-        a[degree] = iteratedNode;
-        iteratedNode = iteratedNode->next;
+        a[degree] = smaller;
         
-    } while (iteratedNode != start);
+        // Break out of the loop if we have exhausted nodes in our original root list
+        if (iteratedNode == last) {
+            break;
+        }
+        
+        iteratedNode = iteratedNodeNext;
+    }
     
     _min = nullptr; // We are safe to do this because currently all nodes are stored in the degree array
     

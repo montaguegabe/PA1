@@ -73,8 +73,7 @@ private:
         }
         
         void print(const Node* start=nullptr) const;
-        void deleteChildren();
-        void deleteSiblings();
+        void deleteTree(const Node* start=nullptr);
     };
     
     // Pointer to the minimum element. Don't throw away the value or you leak the entire heap.
