@@ -11,7 +11,6 @@
 #include <cassert>
 
 #include "Types.h"
-#include "Util.h"
 
 using std::array;
 using std::vector;

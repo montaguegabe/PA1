@@ -5,6 +5,7 @@
 
 #include "Random.h"
 #include "Graph.hpp"
+#include "Util.h"
 
 #include <iostream>
 #include <cmath>

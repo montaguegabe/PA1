@@ -4,6 +4,8 @@
 //
 
 #include "FibHeap.hpp"
+#include "Util.h"
+
 #include <exception>
 #include <iostream>
 #include <cassert>
@@ -58,8 +60,9 @@ void FibHeap::Node::deleteTree(const Node* start) {
 // Testing
 void FibHeap::test() {
     
+    // Make a heap with some random values
     FibHeap fh = FibHeap();
-    fh.insert(21.0, {1, 100});
+    fh.insert(-21.0, {1, 100});
     fh.insert(48.2, {2, 200});
     fh.insert(21.0, {3, 300});
     fh.insert(54.0, {4, 400});
@@ -68,12 +71,40 @@ void FibHeap::test() {
     fh.insert(3.14, {7, 700});
     fh.insert(134.0, {8, 800});
     
-    fh.print();
+    // Pop a few key-values off and make sure they are correct
+    KVPair kv = fh.popMin();
+    assert(compareFloats(kv.key, -21.0));
+    assert(kv.value[1] == 100);
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 1.2));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 3.14));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 21.0));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 48.2));
     
-    fh.popMin();
-    fh.print();
+    // Insert some new nodes after we've popped
+    fh.insert(51.0, {21, 2100});
+    fh.insert(55.0, {27, 2700});
+    fh.insert(96.1, {41, 4100});
+
+    // Pop the rest off and make sure they are all in order
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 51.0));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 54.0));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 55.0));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 96.0));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 96.1));
+    kv = fh.popMin();
+    assert(compareFloats(kv.key, 134.0));
     
-    cout << "Done";
+    // We should no longer have any items in our heap
+    assert(fh._min == nullptr && fh.getSize() == 0);
 }
 
 // Destructor
@@ -82,6 +113,11 @@ FibHeap::~FibHeap() {
     if (_min != nullptr) {
         _min->deleteTree();
     }
+}
+
+// Get size
+SizeType FibHeap::getSize() const {
+    return _n;
 }
 
 void FibHeap::insert(const KeyType key, const ValueType value) {
@@ -149,11 +185,10 @@ KVPair FibHeap::popMin() {
     }
     
     const KVPair result = _min->getKV();
-    const bool isLastElement = _min == _min->next;
+    const bool isLastElement = _min == _min->next && _min->child == nullptr;
     
     // Handle case of one element
     if (isLastElement) {
-        assert(_min->child == nullptr);
         delete _min;
         _min = nullptr;
     } else {
@@ -182,8 +217,12 @@ KVPair FibHeap::popMin() {
         // Now remove the old min from the root list, and set the new min to the first child added (temporarily).
         _min->prev->next = _min->next;
         _min->next->prev = _min->prev;
+        const Node* const toDelete = _min;
         _min = _min->next;
-        delete _min;
+        delete toDelete;
+        
+        //cout << "\nPRECONSOLIDATE\n";
+        //this->print();
         
         // Consolidate nodes
         _consolidate();
@@ -196,7 +235,7 @@ KVPair FibHeap::popMin() {
 
 void FibHeap::print() const {
     
-    cout << "FibHeap of " << _n << " nodes:\n";
+    cout << "\nFibHeap of " << _n << " nodes:\n";
     _min->print();
     cout << "\n";
 }
@@ -216,7 +255,7 @@ void FibHeap::_consolidate() {
     const Node* const last = _min->prev;
     Node* iteratedNode = _min;
     
-    while(true) {
+    while (true) {
         
         Node* const iteratedNodeNext = iteratedNode->next;
         
@@ -229,9 +268,10 @@ void FibHeap::_consolidate() {
             // This will have the same degree as the iterated node
             Node* otherNode = a[degree]; // Called y in notes
             
-            const bool iteratedIsSmaller = iteratedNode->key <= otherNode->key;
-            smaller = iteratedIsSmaller ? iteratedNode : otherNode;
-            Node* larger = iteratedIsSmaller ? otherNode : iteratedNode;
+            const bool iteratedIsSmaller = smaller->key <= otherNode->key;
+            Node* const smallerSave = smaller;
+            smaller = iteratedIsSmaller ? smaller : otherNode;
+            Node* larger = iteratedIsSmaller ? otherNode : smallerSave;
             
             // Parent the smaller under the larger: first remove larger from the root list
             larger->prev->next = larger->next;

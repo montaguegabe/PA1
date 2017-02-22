@@ -28,6 +28,9 @@ class FibHeap {
 public:
     FibHeap() {}
     
+    // Gets the number of items
+    SizeType getSize() const;
+    
     // Adds a new value to the heap
     void insert(const KeyType key, const ValueType value);
     
