@@ -1,0 +1,4 @@
+﻿  main.cpp
+c:\users\aa\dropbox\school\cs 124\pa1\pa1\MST.hpp(28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  PA11.vcxproj -> C:\Users\AA\Dropbox\School\CS 124\pa1\PA1\Debug\PA11.exe
+  PA11.vcxproj -> C:\Users\AA\Dropbox\School\CS 124\pa1\PA1\Debug\PA11.pdb (Full PDB)

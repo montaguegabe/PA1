@@ -105,6 +105,7 @@ void FibHeap::test() {
     
     // We should no longer have any items in our heap
     assert(fh._min == nullptr && fh.getSize() == 0);
+
 }
 
 // Destructor

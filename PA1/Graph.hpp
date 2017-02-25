@@ -25,13 +25,15 @@ public:
     void printVertices() const;
     
     static void test();
+	SizeType _n;
+	vector<vector<FloatType> > _weights;
+
 
 private:
-    SizeType _n;
+    
     unsigned int _dimensions;
     
     vector<Coordinate> _vertices;
-    vector<vector<FloatType> > _weights;
 };
 
 
