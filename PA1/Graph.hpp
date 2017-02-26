@@ -27,9 +27,6 @@ public:
     static void test();
 	SizeType _n;
 	vector<vector<FloatType> > _weights;
-
-
-private:
     
     unsigned int _dimensions;
     

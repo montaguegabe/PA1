@@ -47,19 +47,29 @@ Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed)
             
             _weights.push_back(currentRow);
         }
+		for (SizeType row = 0; row < n; row++) {
+			for (SizeType column = row; column < n; column++) {
+				if (column == row) {
+					_weights[row].push_back(0);
+				}
+				else {
+					_weights[row].push_back(_weights[column][row]);
+				}
+			}
+		}
     } else {
             
         // Generate n points in dimension dimensions
         for (SizeType i = 0; i < n; i++) {
-            
+            /*
             vector<FloatType> currentRow = {};
+			*/
             
-            // Generate two random numbers
             Coordinate c = Coordinate();
             for (unsigned int d = 0; d < dimensions; d++) {
                 c[d] = randomFloat(0.0f, 1.0f);
-            }//end for
-            
+            }
+            /*
             // Calculate distance to all other vertices
             for (SizeType j = 0; j < i; j++) {
                 
@@ -79,19 +89,10 @@ Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed)
             }
             
             _weights.push_back(currentRow);
+			*/
             _vertices.push_back(c);
         }
     }
-	for (SizeType row = 0; row < n; row++) {
-		for (SizeType column = row; column < n; column++) {
-			if (column == row) {
-				_weights[row].push_back(0);
-			}
-			else {
-				_weights[row].push_back(_weights[column][row]);
-			}
-		}
-	}
 }
 
 // Print

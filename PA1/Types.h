@@ -11,7 +11,7 @@
 using std::array;
 
 // Type used for real numbers
-typedef double FloatType;
+typedef float FloatType;
 
 // Used to index the graph matrix
 typedef unsigned int SizeType;
