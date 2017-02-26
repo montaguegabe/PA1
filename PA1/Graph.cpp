@@ -14,22 +14,11 @@
 using std::cout;
 
 // Constructor
-Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed) {
-    
-    // 0 is the default argument for seed
-    if (seed == 0) {
-        
-        // If a seed is left unspecified, set it to the system time
-        unsigned int timeUI = static_cast<unsigned int>(time(NULL));
-        srand(timeUI);
-        
-    } else {
-        setSeed(seed);
-    }
-    
+Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed) {   
+	myseed = seed;
     _n = n;
     _dimensions = dimensions;
-    
+    /*
     if (dimensions == 0) {
         
         // Fill in all weights randomly
@@ -57,7 +46,9 @@ Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed)
 				}
 			}
 		}
-    } else {
+    } 
+	*/
+	if (dimensions != 0) {
             
         // Generate n points in dimension dimensions
         for (SizeType i = 0; i < n; i++) {
@@ -96,6 +87,7 @@ Graph::Graph(const SizeType n, const unsigned int dimensions, unsigned int seed)
 }
 
 // Print
+/*
 void Graph::print() const {
     
     for (SizeType row = 0; row < _n; row++) {
@@ -106,6 +98,7 @@ void Graph::print() const {
         cout << "\n";
     }
 }
+*/
 
 void Graph::printVertices() const {
     
