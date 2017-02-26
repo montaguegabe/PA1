@@ -13,7 +13,7 @@ int main(int argc, const char * argv[]) {
     
     Graph::test();
     FibHeap::test();
-	Graph g1 = Graph(50000, 4);
+	Graph g1 = Graph(20000, 4);
 	std::cout << prim(g1) << std::endl;
     return 0;
 }
