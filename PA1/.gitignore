@@ -1,0 +1,5 @@
+# Build
+randmst
+
+# Build objects
+*.o
