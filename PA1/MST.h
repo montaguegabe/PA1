@@ -39,7 +39,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
             dist.push_back(0);
         }
         else {
-            dist.push_back(numeric_limits<FloatType>::max());
+            dist.push_back(numeric_limits<FloatType>::infinity());
         }
 		notSeen.push_back(true);
 	}
@@ -51,7 +51,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
 		for (int i = 0; i < n - 1; i++) {
             
             // Find the minimum edge/closest unseen vertex
-            FloatType min = numeric_limits<FloatType>::max();
+            FloatType min = numeric_limits<FloatType>::infinity();
             SizeType minIndex = -1;
             for (SizeType j = 0; j < n; j++) {
                 if (notSeen[j] == true && dist[j] < min) {
@@ -97,7 +97,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
 		for (int i = 0; i < n - 1; i++) {
             
             // Find the minimum edge/closest unseen vertex
-            FloatType min = numeric_limits<FloatType>::max();
+            FloatType min = numeric_limits<FloatType>::infinity();
             SizeType minIndex = -1;
             for (SizeType j = 0; j < n; j++) {
                 if (notSeen[j] == true && dist[j] < min) {
