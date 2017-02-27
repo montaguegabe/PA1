@@ -3,7 +3,7 @@
 //  PA1
 //
 
-// Note: All heap values currently passed by value.
+// Note: Types of keys and values are defined in types.h
 
 #ifndef FibHeap_hpp
 #define FibHeap_hpp

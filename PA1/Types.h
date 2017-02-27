@@ -19,12 +19,9 @@ typedef array<FloatType, 4> Coordinate;
 // Used to index the graph matrix
 typedef unsigned int SizeType;
 
-// Edges connect two vertex indices
-typedef array<SizeType, 2> Edge;
-
 // Types used by FibHeap class
 typedef FloatType HeapKeyType;
-typedef Edge HeapValueType;
+typedef SizeType HeapValueType;
 
 
 #endif /* Types_h */
