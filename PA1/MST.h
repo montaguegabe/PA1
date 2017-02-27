@@ -30,14 +30,14 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
     // Vertices that are not yet covered by the MST
 	vector<bool> notSeen;
 
-    // Initialize distances to 0 for source and std::numeric_limits<FloatType>::infinity() for others
+    // Initialize distances to 0 for source and infinity for others
     // Put all nodes into the set notSeen
     for (int i = 0; i < n; i++) {
         if (i == 0) {
             dist.push_back(0);
         }
         else {
-            dist.push_back(std::numeric_limits<FloatType>::infinity());
+            dist.push_back(std::numeric_limits<FloatType>::max());
         }
 		notSeen.push_back(true);
 	}
@@ -49,7 +49,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
 		for (int i = 0; i < n - 1; i++) {
             
             // Find the minimum edge/closest unseen vertex
-            FloatType min = std::numeric_limits<FloatType>::infinity();
+            FloatType min = std::numeric_limits<FloatType>::max();
             SizeType minIndex = -1;
             for (SizeType j = 0; j < n; j++) {
                 if (notSeen[j] == true && dist[j] < min) {
@@ -95,7 +95,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
 		for (int i = 0; i < n - 1; i++) {
             
             // Find the minimum edge/closest unseen vertex
-            FloatType min = std::numeric_limits<FloatType>::infinity();
+            FloatType min = std::numeric_limits<FloatType>::max();
             SizeType minIndex = -1;
             for (SizeType j = 0; j < n; j++) {
                 if (notSeen[j] == true && dist[j] < min) {
