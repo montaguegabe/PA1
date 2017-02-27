@@ -1,4 +1,4 @@
-CPPFLAGS=-g -std=c++11
+CPPFLAGS=-g -std=c++0x
 LDFLAGS=-g
 
 randmst: main.o

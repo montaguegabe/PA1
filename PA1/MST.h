@@ -5,9 +5,11 @@
 #include <cmath>
 #include <set>
 #include <vector>
+#include <limits>
 
 using std::vector;
 using std::set;
+using std::numeric_limits;
 
 // Helper function for distSquaredean distances
 FloatType distSquared(Coordinate c1, Coordinate c2, unsigned int dimensions) {
@@ -37,7 +39,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
             dist.push_back(0);
         }
         else {
-            dist.push_back(std::numeric_limits<FloatType>::max());
+            dist.push_back(numeric_limits<FloatType>::max());
         }
 		notSeen.push_back(true);
 	}
@@ -49,7 +51,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
 		for (int i = 0; i < n - 1; i++) {
             
             // Find the minimum edge/closest unseen vertex
-            FloatType min = std::numeric_limits<FloatType>::max();
+            FloatType min = numeric_limits<FloatType>::max();
             SizeType minIndex = -1;
             for (SizeType j = 0; j < n; j++) {
                 if (notSeen[j] == true && dist[j] < min) {
@@ -95,7 +97,7 @@ FloatType prim(const SizeType n, unsigned int dimensions) {
 		for (int i = 0; i < n - 1; i++) {
             
             // Find the minimum edge/closest unseen vertex
-            FloatType min = std::numeric_limits<FloatType>::max();
+            FloatType min = numeric_limits<FloatType>::max();
             SizeType minIndex = -1;
             for (SizeType j = 0; j < n; j++) {
                 if (notSeen[j] == true && dist[j] < min) {
