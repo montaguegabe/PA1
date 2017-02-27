@@ -13,6 +13,9 @@ using std::array;
 // Type used for real numbers
 typedef float FloatType;
 
+// Tuples of real numbers
+typedef array<FloatType, 4> Coordinate;
+
 // Used to index the graph matrix
 typedef unsigned int SizeType;
 
