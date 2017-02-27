@@ -6,3 +6,7 @@ randmst: main.o
 
 randmst.o: main.cpp MST.h Random.h Types.h Util.h
 	g++ $(CPPFLAGS) -c main.cpp
+
+clean:
+	rm ./randmst
+	rm main.o
