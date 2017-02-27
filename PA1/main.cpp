@@ -5,10 +5,10 @@
 
 #include <iostream>
 
-#include "FibHeap.hpp"
-#include "MST.hpp"
+#include "MST.h"
 #include "Types.h"
 #include <string>
+#include <vector>
 
 using std::cout;
 using std::endl;
@@ -30,20 +30,13 @@ int main(int argc, const char * argv[]) {
     if (exhaustive) {
     
         // Test on different dimensions
-        unsigned int dims[4] = {0, 2, 3, 4};
+        vector<unsigned int> dims = {0, 2, 3, 4};
         
         // Test on different sizes of graphs
-        int nums[11] = { 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072 };
+        vector<SizeType> nums = { 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144 };
         
         for (const auto & dim : dims) {
             for (const auto & num : nums) {
-                
-                if (dim == 0) {
-                    continue;
-                }
-                if (dim == 2 && num <= 65536) {
-                    continue;
-                }
                 
                 FloatType total = 0;
                 const unsigned int trials = 5;
