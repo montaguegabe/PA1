@@ -27,7 +27,6 @@
 		95ED749D1E5A6FE60047CB48 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		95ED74A71E5A751D0047CB48 /* Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Random.h; sourceTree = "<group>"; };
 		95ED74A81E5A75A40047CB48 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
-		95ED74AB1E5A84B40047CB48 /* Util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		95F4F5BD1E63B8E10027FD47 /* MST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MST.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,7 +60,6 @@
 		95ED749C1E5A6FE60047CB48 /* PA1 */ = {
 			isa = PBXGroup;
 			children = (
-				95ED74AB1E5A84B40047CB48 /* Util.h */,
 				95ED74A81E5A75A40047CB48 /* Types.h */,
 				95ED74A71E5A751D0047CB48 /* Random.h */,
 				95F4F5BD1E63B8E10027FD47 /* MST.h */,
